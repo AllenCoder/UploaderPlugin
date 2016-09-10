@@ -1,0 +1,90 @@
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'maven-publish'
+group = 'com.pre.im'
+version = '1.0.1'
+def baseUrl = 'https://github.com/AllenCoder'
+def siteUrl = baseUrl
+def gitUrl = "${baseUrl}/UploaderPlugin.git"
+def issueUrl = "${baseUrl}/UploaderPlugin/issues"
+
+def projectName = "uploaderplugin"
+def mavenDesc = 'A simple plugin provider for android studio to help apk upload fir.im and pre.im'
+def licenseIds = ['Apache-2.0']
+
+install {
+    repositories.mavenInstaller {
+        // This generates POM.xml with proper parameters
+        pom.project {
+            // packaging 'jar'
+            // Add your description here
+            name = 'A simple plugin provider for android studio to help apk upload fir.im and pre.im'
+            url siteUrl
+            // Set your license
+            licenses {
+                license {
+                    name = 'The Apache Software License, Version 2.0'
+                    url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                }
+            }
+            developers {
+                developer {
+                    id 'Allen'
+                    name 'AllenCoder'
+                    email 'AllenCoder@126.com'
+                }
+            }
+            scm {
+                connection gitUrl
+                developerConnection gitUrl
+                url siteUrl
+            }
+        }
+    }
+}
+
+task sourcesJar(type: Jar) {
+    from 'src/main/groovy'
+    exclude 'META-INF'
+    classifier = 'sources'
+}
+
+groovydoc {
+    includePrivate = true
+    source = 'src/main/groovy'
+}
+
+task groovydocJar(type: Jar, dependsOn: groovydoc) {
+    classifier = 'javadoc'
+    from groovydoc.destinationDir
+}
+
+artifacts {
+    archives groovydocJar
+    archives sourcesJar
+}
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+
+    configurations = ['archives']
+
+    pkg {
+        repo = 'maven'
+        name = projectName
+        desc = mavenDesc
+        websiteUrl = siteUrl
+        issueTrackerUrl = issueUrl
+        vcsUrl = gitUrl
+        labels = ['gradle', 'com.pre.im.plugin', 'preuploader']
+        licenses = licenseIds
+        publish = true
+        publicDownloadNumbers = true
+    }
+}
+//apply from: 'https://raw.githubusercontent.com/attwellBrian/JCenter/master/installv1.gradle'
+//apply from: 'https://raw.githubusercontent.com/attwellBrian/JCenter/master/bintrayv1.gradle'
+
