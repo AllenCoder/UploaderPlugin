@@ -9,3 +9,4 @@
 .externalNativeBuild
 /settings.gradle
 /.idea/
+/preuploader/build/

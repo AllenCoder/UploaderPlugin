@@ -43,7 +43,7 @@ public class PrePlugin implements Plugin<Project> {
                     }
 
                     if (variantName.contains("Release")) {
-                        println("Pre.in: the option autoUpload is opened, it will auto upload the release to the bugly platform")
+                        println("Pre.in: the option autoUpload is opened, it will auto upload the release to the pre platform")
                     }
                     uploadApk(generateUploadInfo(variant))
 

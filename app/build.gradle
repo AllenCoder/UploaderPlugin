@@ -1,5 +1,10 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'com.pre.im'
+pre {
+    user_key='cb0895da8b855984e72f3a1d3b1466c2'
+    password='1222222'
+    update_notify="1"
+}
 android {
     compileSdkVersion 24
     buildToolsVersion "23.0.2"
@@ -26,5 +31,4 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:24.2.0'
     testCompile 'junit:junit:4.12'
-    compile 'com.pre.im:preuploader:1.0.1'
 }
