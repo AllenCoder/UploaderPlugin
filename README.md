@@ -1,6 +1,8 @@
 # Pre.im 插件使用说明
 
 
+[官网链接，一款内测分发平台](http://pre.im/)
+
 
 在根目录下的build.gralde文件的depandencies（buildscript部分）中添加：
 
@@ -42,6 +44,7 @@ buildscript {
 
 `<Project>/<Module>/build.gradle`文件如下：
 ```
+apply plugin: 'com.pre.im'
 pre {
     user_key='a33333333333rrrr4ddeeeeeeedd'
     password='1222222'
