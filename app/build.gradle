@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.pre.im'
 pre {
-    user_key='cb0895da8b855984e72f3a1d3b1466c2'
+    user_key='cccccccddddeddddddddddddddd'
     password='1222222'
     update_notify="1"
 }
